@@ -1,4 +1,4 @@
-namespace NextBus.NET.Model
+namespace NextBus.NET.Models
 {
     /// <summary>
     /// 

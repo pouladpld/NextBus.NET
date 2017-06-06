@@ -1,7 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace NextBus.NET.Model
+namespace NextBus.NET.Models
 {
     /// <summary>
     /// 
@@ -26,16 +27,22 @@ namespace NextBus.NET.Model
         /// <summary>
         /// 
         /// </summary>
-        public bool UserForUI { get; set; }
+        public bool UserForUi { get; set; }
+
+        public string Branch { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public List<Stop> Stops { get; set; }
+        public string[] StopTags { get; set; }
 
         public Stop GetStop(string tag)
         {
-            return Stops.Single(x => x.Tag == tag);
+            if (!StopTags.Contains(tag))
+            {
+                throw new Exception();
+            }
+            return new Stop { Tag = tag };
         }
 
         /// <summary>
@@ -54,8 +61,8 @@ namespace NextBus.NET.Model
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != typeof (Direction)) return false;
-            return Equals((Direction) obj);
+            if (obj.GetType() != typeof(Direction)) return false;
+            return Equals((Direction)obj);
         }
 
         public override int GetHashCode()
@@ -87,7 +94,7 @@ namespace NextBus.NET.Model
 
         public override string ToString()
         {
-            return string.Format("Tag: {0}, Title: {1}, Name: {2}, Stops: {3}", Tag, Title, Name, Stops.Count);
+            return string.Format("Tag: {0}, Title: {1}, Name: {2}, Stops: {3}", Tag, Title, Name, StopTags.Length);
         }
     }
 }

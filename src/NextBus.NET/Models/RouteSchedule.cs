@@ -1,9 +1,11 @@
-namespace NextBus.NET.Model
+using System.Collections.Generic;
+
+namespace NextBus.NET.Models
 {
     /// <summary>
     /// 
     /// </summary>
-    public class Stop
+    public class RouteSchedule
     {
         /// <summary>
         /// 
@@ -18,24 +20,29 @@ namespace NextBus.NET.Model
         /// <summary>
         /// 
         /// </summary>
-        public decimal Lat { get; set; }
+        public string ScheduleClass { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public decimal Lon { get; set; }
+        public string ServiceClass { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public int StopId { get; set; }
+        public string Direction { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public IList<StopSchedule> Stops { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="other"></param>
         /// <returns></returns>
-        public bool Equals(Stop other)
+        public bool Equals(RouteSchedule other)
         {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
@@ -46,8 +53,8 @@ namespace NextBus.NET.Model
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != typeof (Stop)) return false;
-            return Equals((Stop) obj);
+            if (obj.GetType() != typeof (RouteSchedule)) return false;
+            return Equals((RouteSchedule) obj);
         }
 
         public override int GetHashCode()
@@ -61,7 +68,7 @@ namespace NextBus.NET.Model
         /// <param name="left"></param>
         /// <param name="right"></param>
         /// <returns></returns>
-        public static bool operator ==(Stop left, Stop right)
+        public static bool operator ==(RouteSchedule left, RouteSchedule right)
         {
             return Equals(left, right);
         }
@@ -72,14 +79,15 @@ namespace NextBus.NET.Model
         /// <param name="left"></param>
         /// <param name="right"></param>
         /// <returns></returns>
-        public static bool operator !=(Stop left, Stop right)
+        public static bool operator !=(RouteSchedule left, RouteSchedule right)
         {
             return !Equals(left, right);
         }
 
         public override string ToString()
         {
-            return string.Format("Tag: {0}, Title: {1}, Lat: {2}, Lon: {3}, StopId: {4}", Tag, Title, Lat, Lon, StopId);
+            return string.Format("Tag: {0}, ScheduleClass: {1}, ServiceClass: {2}, Direction: {3}, Stops: {4}", Tag,
+                                 ScheduleClass, ServiceClass, Direction, Stops.Count);
         }
     }
 }

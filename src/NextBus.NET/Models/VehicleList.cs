@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace NextBus.NET.Model
+namespace NextBus.NET.Models
 {
     /// <summary>
     /// 

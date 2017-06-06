@@ -11,8 +11,16 @@ namespace NextBus.NET.Extensions
             foreach (var pair in dict)
             {
                 var key = WebUtility.UrlEncode(pair.Key);
-                var val = WebUtility.UrlEncode(pair.Value.ToString());
-                paramsList.Add(key + '=' + val);
+
+                if (pair.Value == null)
+                {
+                    paramsList.Add(key); // for cases like: &verbose
+                }
+                else
+                {
+                    var val = WebUtility.UrlEncode(pair.Value.ToString());
+                    paramsList.Add(key + '=' + val);
+                }
             }
             return string.Join("&", paramsList);
         }

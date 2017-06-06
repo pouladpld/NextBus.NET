@@ -1,4 +1,4 @@
-namespace NextBus.NET.Model
+namespace NextBus.NET.Models
 {
     /// <summary>
     /// 
@@ -8,7 +8,7 @@ namespace NextBus.NET.Model
         /// <summary>
         /// 
         /// </summary>
-        public int EpochTime { get; set; }
+        public long EpochTime { get; set; }
 
         /// <summary>
         /// 
@@ -34,6 +34,8 @@ namespace NextBus.NET.Model
         /// 
         /// </summary>
         public bool AffectedByLayover { get; set; }
+
+        public string Branch { get; set; }
 
         /// <summary>
         /// 

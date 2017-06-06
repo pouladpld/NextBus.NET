@@ -1,11 +1,12 @@
 using System.Collections.Generic;
+using System.Linq;
 
-namespace NextBus.NET.Model
+namespace NextBus.NET.Models
 {
     /// <summary>
     /// 
     /// </summary>
-    public class RouteSchedule
+    public class RouteConfig
     {
         /// <summary>
         /// 
@@ -20,29 +21,69 @@ namespace NextBus.NET.Model
         /// <summary>
         /// 
         /// </summary>
-        public string ScheduleClass { get; set; }
+        public string ShortTitle { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public string ServiceClass { get; set; }
+        public string Color { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public string Direction { get; set; }
+        public string OppositeColor { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public IList<StopSchedule> Stops { get; set; }
+        public decimal LatMin { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public decimal LatMax { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public decimal LonMin { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public decimal LonMax { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public Stop[] Stops { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public Direction[] Directions { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public Path[] Paths { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="tag"></param>
+        /// <returns></returns>
+        public Direction GetDirection(string tag)
+        {
+            return Directions.Single(x => x.Tag == tag);
+        }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="other"></param>
         /// <returns></returns>
-        public bool Equals(RouteSchedule other)
+        public bool Equals(RouteConfig other)
         {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
@@ -53,8 +94,8 @@ namespace NextBus.NET.Model
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != typeof (RouteSchedule)) return false;
-            return Equals((RouteSchedule) obj);
+            if (obj.GetType() != typeof(RouteConfig)) return false;
+            return Equals((RouteConfig)obj);
         }
 
         public override int GetHashCode()
@@ -68,7 +109,7 @@ namespace NextBus.NET.Model
         /// <param name="left"></param>
         /// <param name="right"></param>
         /// <returns></returns>
-        public static bool operator ==(RouteSchedule left, RouteSchedule right)
+        public static bool operator ==(RouteConfig left, RouteConfig right)
         {
             return Equals(left, right);
         }
@@ -79,15 +120,14 @@ namespace NextBus.NET.Model
         /// <param name="left"></param>
         /// <param name="right"></param>
         /// <returns></returns>
-        public static bool operator !=(RouteSchedule left, RouteSchedule right)
+        public static bool operator !=(RouteConfig left, RouteConfig right)
         {
             return !Equals(left, right);
         }
 
         public override string ToString()
         {
-            return string.Format("Tag: {0}, ScheduleClass: {1}, ServiceClass: {2}, Direction: {3}, Stops: {4}", Tag,
-                                 ScheduleClass, ServiceClass, Direction, Stops.Count);
+            return string.Format("Tag: {0}, Title: {1}", Tag, Title);
         }
     }
 }

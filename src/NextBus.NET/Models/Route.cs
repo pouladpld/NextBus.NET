@@ -1,4 +1,4 @@
-namespace NextBus.NET.Model
+namespace NextBus.NET.Models
 {
     /// <summary>
     /// 
@@ -14,5 +14,7 @@ namespace NextBus.NET.Model
         /// 
         /// </summary>
         public string Title { get; set; }
+
+        public string ShortTitle { get; set; }
     }
 }
