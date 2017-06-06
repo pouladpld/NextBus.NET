@@ -1,22 +1,21 @@
 ﻿using System;
-//using System.Runtime.Serialization;
 
 namespace NextBus.NET
 {
-    public class NextbusException : Exception
+    public class NextBusException : Exception
     {
         public bool ShouldRetry { get; internal set; }
 
-        public NextbusException()
+        public NextBusException()
         {
         }
 
-        public NextbusException(string message)
+        public NextBusException(string message)
             : base(message)
         {
         }
 
-        public NextbusException(string message, Exception inner)
+        public NextBusException(string message, Exception inner)
             : base(message, inner)
         {
         }

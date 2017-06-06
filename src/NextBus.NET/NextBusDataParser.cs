@@ -69,6 +69,17 @@ namespace NextBus.NET
                 return null;
             }
 
+            var stops = routeElement.Elements("stop")
+                .Select(x => new Stop
+                {
+                    Tag = x.Attr("tag"),
+                    Title = x.Attr("title"),
+                    ShortTitle = x.Attr("shortTitle"),
+                    Lat = x.Attr("lat").ToDecimal(),
+                    Lon = x.Attr("lon").ToDecimal(),
+                    StopId = x.Attr("stopId").ToNullableInt(),
+                }).ToArray();
+
             var route = new RouteConfig
             {
                 Tag = routeElement.Attr("tag"),
@@ -79,16 +90,7 @@ namespace NextBus.NET
                 LatMax = routeElement.Attr("latMax").ToDecimal(),
                 LonMin = routeElement.Attr("lonMin").ToDecimal(),
                 LonMax = routeElement.Attr("lonMax").ToDecimal(),
-                Stops = routeElement.Elements("stop")
-                    .Select(x => new Stop
-                    {
-                        Tag = x.Attr("tag"),
-                        Title = x.Attr("title"),
-                        ShortTitle = x.Attr("shortTitle"),
-                        Lat = x.Attr("lat").ToDecimal(),
-                        Lon = x.Attr("lon").ToDecimal(),
-                        StopId = x.Attr("stopId").ToInt()
-                    }).ToArray(),
+                Stops = stops,
                 Directions = routeElement.Elements("direction")
                     .Select(x => new Direction
                     {
@@ -229,7 +231,7 @@ namespace NextBus.NET
             var vehicleList = new VehicleList
             {
                 Vehicles = vehicles,
-                LastTime = document.Root.Element("lastTime").Value.ToInt()
+                LastTime = document.Root.Element("lastTime")?.Value.ToInt() ?? 0
             };
             return vehicleList;
         }
@@ -239,7 +241,7 @@ namespace NextBus.NET
             XElement element = root.Element("Error");
             if (element != null)
             {
-                throw new NextbusException(element.Value)
+                throw new NextBusException(element.Value)
                 {
                     ShouldRetry = element.Attr("shouldRetry").ToBool()
                 };

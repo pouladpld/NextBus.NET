@@ -53,13 +53,13 @@ namespace NextBus.NET.Models
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != typeof (RouteSchedule)) return false;
-            return Equals((RouteSchedule) obj);
+            if (obj.GetType() != typeof(RouteSchedule)) return false;
+            return Equals((RouteSchedule)obj);
         }
 
         public override int GetHashCode()
         {
-            return (Tag != null ? Tag.GetHashCode() : 0);
+            return Tag?.GetHashCode() ?? 0;
         }
 
         /// <summary>

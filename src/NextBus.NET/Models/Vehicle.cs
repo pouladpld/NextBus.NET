@@ -56,13 +56,13 @@
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != typeof (Vehicle)) return false;
-            return Equals((Vehicle) obj);
+            if (obj.GetType() != typeof(Vehicle)) return false;
+            return Equals((Vehicle)obj);
         }
 
         public override int GetHashCode()
         {
-            return (Id != null ? Id.GetHashCode() : 0);
+            return Id?.GetHashCode() ?? 0;
         }
 
         public static bool operator ==(Vehicle left, Vehicle right)

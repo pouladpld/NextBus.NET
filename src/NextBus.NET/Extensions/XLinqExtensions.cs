@@ -20,6 +20,11 @@ namespace NextBus.NET.Extensions
             return int.Parse(value);
         }
 
+        public static int? ToNullableInt(this string value)
+        {
+            return int.TryParse(value, out int n) ? (int?)n : null;
+        }
+
         public static long ToLong(this string value)
         {
             return long.Parse(value);

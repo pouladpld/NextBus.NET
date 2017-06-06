@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace NextBus.NET.Models
@@ -67,7 +66,7 @@ namespace NextBus.NET.Models
 
         public override int GetHashCode()
         {
-            return (Tag != null ? Tag.GetHashCode() : 0);
+            return Tag?.GetHashCode() ?? 0;
         }
 
         /// <summary>
