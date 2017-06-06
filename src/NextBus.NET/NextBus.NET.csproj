@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.3</TargetFramework>
+    <PackageId>NextBus.NET</PackageId>
+    <Description>A client for calling NextBus web services</Description>
+    <Authors>Poulad</Authors>
+    <Owners>Poulad</Owners>
+    <PackageVersion>0.0.1</PackageVersion>
+    <DebugType>portable</DebugType>
+    <AssemblyName>NextBus.NET</AssemblyName>
+    <AssemblyTitle>NextBus.NET</AssemblyTitle>
+    <PackageTags>nextbus bus</PackageTags>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageProjectUrl>https://github.com/pouladpld/NextBus.NET</PackageProjectUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/pouladpld/NextBus.NET.git</RepositoryUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/pouladpld/NextBus.NET/master/docs/icon.png</PackageIconUrl>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/pouladpld/NextBus.NET/master/LICENSE</PackageLicenseUrl>
+    <Product>NextBus.NET</Product>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+</Project>

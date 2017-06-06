@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<body copyright="All data copyright agencies listed below and NextBus Inc 2011.">
+  <agency tag="actransit" title="AC Transit" regionTitle="California-Northern"/>
+  <agency tag="calu-pa" title="California University of Pennsylvania" regionTitle="Pennsylvania"/>
+  <agency tag="camarillo" title="Camarillo Area (CAT)" shortTitle="Camarillo (CAT)" regionTitle="California-Southern"/>
+  <agency tag="chapel-hill" title="Chapel Hill Transit" shortTitle="Chapel Hill" regionTitle="North Carolina"/>
+  <agency tag="charles-river" title="Charles River TMA - EZRide" shortTitle="Charles River EZRide" regionTitle="Massachusetts"/>
+  <agency tag="charm-city" title="Charm City Circulator" regionTitle="Maryland"/>
+  <agency tag="oxford-ms" title="City of Oxford" regionTitle="Mississippi"/>
+  <agency tag="collegetown" title="Collegetown Shuttle" regionTitle="Maryland"/>
+  <agency tag="dc-circulator" title="DC Circulator" regionTitle="District of Columbia"/>
+  <agency tag="ttc" title="Toronto Transit Commission" shortTitle="Toronto TTC" regionTitle="Ontario"/>
+</body>
