@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{2CBE40F6-8DB6-4444-B32E-CE4D29B59B19}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NextBus.NET", "src\NextBus.NET\NextBus.NET.csproj", "{9BA58819-FBC8-4524-B717-0F8B1FC1DC83}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{7AF5D051-06A2-4D24-B059-75190E40211E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NextBus.NET.Tests", "test\NextBus.NET.Tests\NextBus.NET.Tests.csproj", "{3B0FF74B-8E1D-4C69-8305-4EE06D0E2C43}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9BA58819-FBC8-4524-B717-0F8B1FC1DC83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BA58819-FBC8-4524-B717-0F8B1FC1DC83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BA58819-FBC8-4524-B717-0F8B1FC1DC83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BA58819-FBC8-4524-B717-0F8B1FC1DC83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B0FF74B-8E1D-4C69-8305-4EE06D0E2C43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B0FF74B-8E1D-4C69-8305-4EE06D0E2C43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B0FF74B-8E1D-4C69-8305-4EE06D0E2C43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B0FF74B-8E1D-4C69-8305-4EE06D0E2C43}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9BA58819-FBC8-4524-B717-0F8B1FC1DC83} = {2CBE40F6-8DB6-4444-B32E-CE4D29B59B19}
+		{3B0FF74B-8E1D-4C69-8305-4EE06D0E2C43} = {7AF5D051-06A2-4D24-B059-75190E40211E}
+	EndGlobalSection
+EndGlobal
