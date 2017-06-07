@@ -111,12 +111,57 @@ namespace NextBus.NET
             return routePredictions;
         }
 
+        public async Task<IEnumerable<RoutePrediction>> GetRoutePredictionsForMultipleStops
+            (string agencyTag, Dictionary<string, string[]> routeStoptags, bool useShortTitles = false)
+        {
+            var parameters = new List<KeyValuePair<string, object>>
+            {
+                new KeyValuePair<string, object>("command", "predictionsForMultiStops"),
+                new KeyValuePair<string, object>("a", agencyTag),
+            };
+
+            foreach (var pair in routeStoptags)
+            {
+                foreach (var stopTag in pair.Value)
+                {
+                    parameters.Add(new KeyValuePair<string, object>("stops", pair.Key + '|' + stopTag));
+                }
+            }
+            if (useShortTitles)
+            {
+                parameters.Add(new KeyValuePair<string, object>("useShortTitles", true));
+            }
+
+            var xml = await MakeRequest(parameters);
+            var routePredictions = _parser.ParseRoutePredictions(xml);
+            return routePredictions;
+        }
+
+        public async Task<IEnumerable<RouteSchedule>> GetRouteSchedule(string agencyTag, string routeTag)
+        {
+            var parameters = new Dictionary<string, object>
+            {
+                { "command", "schedule" },
+                { "a", agencyTag },
+                { "r", routeTag },
+            };
+
+            var xml = await MakeRequest(parameters);
+            var schedules = _parser.ParseRouteSchedules(xml);
+            return schedules;
+        }
+
         private async Task<string> MakeRequest(Dictionary<string, object> parameters)
         {
             var xml = await _client.Get('?' + parameters.ToQueryString());
             return xml;
         }
 
+        private async Task<string> MakeRequest(List<KeyValuePair<string, object>> parameters)
+        {
+            var xml = await _client.Get('?' + parameters.ToQueryString());
+            return xml;
+        }
 
 
 

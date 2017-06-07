@@ -12,5 +12,7 @@ namespace NextBus.NET
         RouteConfig ParseRouteConfig(string xml);
 
         IEnumerable<RoutePrediction> ParseRoutePredictions(string xml);
+
+        IEnumerable<RouteSchedule> ParseRouteSchedules(string xml);
     }
 }

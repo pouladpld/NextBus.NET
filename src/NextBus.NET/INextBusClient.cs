@@ -17,5 +17,10 @@ namespace NextBus.NET
 
         Task<IEnumerable<RoutePrediction>> GetRoutePredictionsByStopTag
             (string agencyTag, string stopTag, string routeTag, bool verbose = false);
+
+        Task<IEnumerable<RoutePrediction>> GetRoutePredictionsForMultipleStops
+            (string agencyTag, Dictionary<string, string[]> routeStoptags, bool useShortTitles = false);
+
+        Task<IEnumerable<RouteSchedule>> GetRouteSchedule(string agencyTag, string routeTag);
     }
 }

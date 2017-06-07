@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Linq;
+using NextBus.NET.Models.Schedules;
 
 namespace NextBus.NET.Models
 {
@@ -32,10 +34,12 @@ namespace NextBus.NET.Models
         /// </summary>
         public string Direction { get; set; }
 
+        public Header Header { get; set; }
+
         /// <summary>
         /// 
         /// </summary>
-        public IList<StopSchedule> Stops { get; set; }
+        public IEnumerable<RouteBlock> Blocks { get; set; }
 
         /// <summary>
         /// 
@@ -87,7 +91,7 @@ namespace NextBus.NET.Models
         public override string ToString()
         {
             return string.Format("Tag: {0}, ScheduleClass: {1}, ServiceClass: {2}, Direction: {3}, Stops: {4}", Tag,
-                                 ScheduleClass, ServiceClass, Direction, Stops.Count);
+                                 ScheduleClass, ServiceClass, Direction, Blocks.Count());
         }
     }
 }
