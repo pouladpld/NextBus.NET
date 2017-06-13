@@ -12,12 +12,14 @@ namespace NextBus.NET.Extensions
 
         public static decimal ToDecimal(this string value)
         {
-            return decimal.Parse(value);
+            decimal.TryParse(value, out decimal d);
+            return d;
         }
 
         public static int ToInt(this string value)
         {
-            return int.Parse(value);
+            int.TryParse(value, out int i);
+            return i;
         }
 
         public static int? ToNullableInt(this string value)
@@ -27,12 +29,14 @@ namespace NextBus.NET.Extensions
 
         public static long ToLong(this string value)
         {
-            return long.Parse(value);
+            long.TryParse(value, out long l);
+            return l;
         }
 
         public static bool ToBool(this string value)
         {
-            return bool.Parse(value);
+            bool.TryParse(value, out bool b);
+            return b;
         }
     }
 }

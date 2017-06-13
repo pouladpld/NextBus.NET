@@ -6,7 +6,7 @@
     <Description>A client for calling NextBus web services</Description>
     <Authors>Poulad</Authors>
     <Owners>Poulad</Owners>
-    <PackageVersion>0.0.1</PackageVersion>
+    <PackageVersion>0.0.2</PackageVersion>
     <DebugType>portable</DebugType>
     <AssemblyName>NextBus.NET</AssemblyName>
     <AssemblyTitle>NextBus.NET</AssemblyTitle>

@@ -98,7 +98,7 @@ namespace NextBus.NET
             {
                 { "command", "predictions" },
                 { "a", agencyTag },
-                { "stopTag", stopTag },
+                { "s", stopTag },
                 { "r", routeTag },
             };
             if (verbose)
