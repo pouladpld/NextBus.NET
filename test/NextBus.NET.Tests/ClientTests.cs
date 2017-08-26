@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Moq;
@@ -40,7 +41,7 @@ namespace NextBus.NET.Tests
         [Fact]
         public async Task ShouldGetTtcRoutes()
         {
-            var sut = new NextBusClient(new NextBusHttpClient(), new NextBusDataParser());
+            INextBusClient sut = new NextBusClient(new NextBusHttpClient(), new NextBusDataParser());
             var routes = await sut.GetRoutesForAgency("ttc");
 
             Assert.NotEmpty(routes);
@@ -51,7 +52,7 @@ namespace NextBus.NET.Tests
         [Fact]
         public async Task ShouldGetRouteConfig()
         {
-            var sut = new NextBusClient(new NextBusHttpClient(), new NextBusDataParser());
+            INextBusClient sut = new NextBusClient(new NextBusHttpClient(), new NextBusDataParser());
             var routeConfig = await sut.GetRouteConfig("ttc", "110");
 
             Assert.NotNull(routeConfig);
@@ -60,11 +61,36 @@ namespace NextBus.NET.Tests
         [Fact]
         public async Task ShouldGetRoutePredictions()
         {
-            var sut = new NextBusClient(new NextBusHttpClient(), new NextBusDataParser());
+            INextBusClient sut = new NextBusClient(new NextBusHttpClient(), new NextBusDataParser());
             var routePredictions = await sut.GetRoutePredictionsByStopId("ttc", "14811", verbose: true);
 
             Assert.NotNull(routePredictions);
             Assert.NotEqual(0, routePredictions.First().Directions.First().Predictions.First().EpochTime);
+        }
+
+        [Fact]
+        public async Task ShouldGetPredictionsForMultipleStops()
+        {
+            INextBusClient sut = new NextBusClient(new NextBusHttpClient(), new NextBusDataParser());
+            var routeStopTags = new Dictionary<string, string[]>
+            {
+                { "63", new[] { "14197", "597", } },
+                { "110", new[] { "14219", } },
+            };
+            var routePredictions = await sut.GetRoutePredictionsForMultipleStops("ttc", routeStopTags, true);
+
+            Assert.NotNull(routePredictions);
+            Assert.NotEqual(0, routePredictions.First().Directions.First().Predictions.First().EpochTime);
+        }
+
+        [Fact]
+        public async Task ShouldGetRouteSchedule()
+        {
+            INextBusClient sut = new NextBusClient(new NextBusHttpClient(), new NextBusDataParser());
+            var schedules = await sut.GetRouteSchedule("ttc", "110");
+
+            Assert.NotNull(schedules);
+            Assert.NotEqual(0, schedules.First().Blocks.First().Stops.First().EpochTime);
         }
     }
 }

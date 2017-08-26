@@ -3,6 +3,7 @@ using System.Linq;
 using System.Xml.Linq;
 using NextBus.NET.Extensions;
 using NextBus.NET.Models;
+using NextBus.NET.Models.Schedules;
 
 namespace NextBus.NET
 {
@@ -167,44 +168,58 @@ namespace NextBus.NET
             return routePredictions;
         }
 
-
-
-
-
-
-
-
-
-
-        public List<RouteSchedule> ParseSchedule(string xml)
+        public IEnumerable<RouteSchedule> ParseRouteSchedules(string xml)
         {
-            XDocument document = XDocument.Parse(xml);
+            var document = XDocument.Parse(xml);
+
             if (document.Root == null)
             {
-                return new List<RouteSchedule>();
+                return new RouteSchedule[0];
             }
 
             TryParseError(document.Root);
 
-            List<RouteSchedule> routes = (from route in document.Root.Elements("route")
-                                          select new RouteSchedule
-                                          {
-                                              Tag = route.Attr("tag"),
-                                              Title = route.Attr("title"),
-                                              ScheduleClass = route.Attr("scheduleClass"),
-                                              ServiceClass = route.Attr("serviceClass"),
-                                              Direction = route.Attr("direction"),
-                                              Stops =
-                                                             (from stop in route.FirstNode.ElementsAfterSelf().Descendants("stop")
-                                                              select new StopSchedule
-                                                              {
-                                                                  Tag = stop.Attr("tag"),
-                                                                  EpochTime = stop.Attr("epochTime").ToInt(),
-                                                                  BlockId = stop.Parent.Attr("blockID")
-                                                              }).ToList()
-                                          }).ToList();
-            return routes;
+            var routeSchedules = document.Root.Elements("route")
+                .Select(x => new RouteSchedule
+                {
+                    Tag = x.Attr("tag"),
+                    Title = x.Attr("title"),
+                    ScheduleClass = x.Attr("scheduleClass"),
+                    ServiceClass = x.Attr("serviceClass"),
+                    Direction = x.Attr("direction"),
+                    Header = new Header
+                    {
+                        Stops = x.Elements("stop")
+                            .Select(y => new HeaderStop
+                            {
+                                Tag = y.Attr("tag"),
+                                Title = y.Value,
+                            }).ToArray(),
+                    },
+                    Blocks = x.Elements("tr")
+                        .Select(y => new RouteBlock
+                        {
+                            Id = y.Attr("blockID"),
+                            Stops = y.Elements("stop")
+                                .Select(z => new ScheduleStop
+                                {
+                                    Tag = z.Attr("tag"),
+                                    EpochTime = z.Attr("epochTime").ToLong(),
+                                })
+                                .ToArray(),
+                        }).ToArray(),
+                }).ToArray();
+
+            return routeSchedules;
         }
+
+
+
+
+
+
+
+
 
         public VehicleList ParseVehicle(string xml)
         {
