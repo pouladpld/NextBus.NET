@@ -11,6 +11,12 @@ namespace NextBus.NET
 
         private readonly INextBusHttpClient _client;
 
+        public NextBusClient()
+        {
+            _client = new NextBusHttpClient();
+            _parser = new NextBusDataParser();
+        }
+
         public NextBusClient(INextBusHttpClient client, INextBusDataParser parser)
         {
             _client = client;
@@ -154,50 +160,52 @@ namespace NextBus.NET
         private async Task<string> MakeRequest(Dictionary<string, object> parameters)
         {
             var xml = await _client.Get('?' + parameters.ToQueryString());
+
             return xml;
         }
 
         private async Task<string> MakeRequest(List<KeyValuePair<string, object>> parameters)
         {
             var xml = await _client.Get('?' + parameters.ToQueryString());
+
             return xml;
         }
 
-
-
-
-
-
-
-        //public Task<VehicleList> GetVehicles(string agency, string route, int epoch)
-        //{
-        //    var request = _factory.CreateVehiclesRequest(agency, route, epoch);
-        //    //Task<VehicleList> task = ExecuteRequest(request).ContinueWith(x => _parser.ParseVehicle(x.Result));
-        //    return task;
-        //}
-
-        //public Task<List<Prediction>> GetPredictions(string agencyTag, string stopTag, string routeTag)
-        //{
-        //    var request = _factory.CreatePredictionsRequest(agencyTag, stopTag, routeTag);
-        //    return ExecuteRequest(request).ContinueWith(x => _parser.ParseRoutePredictions(x.Result));
-        //}
-
-        //public Task<List<RouteSchedule>> GetSchedule(string agencyTag, string routeTag)
-        //{
-        //    var request = _factory.CreateScheduleRequest(agencyTag, routeTag);
-        //    return ExecuteRequest(request).ContinueWith(x => _parser.ParseSchedule(x.Result));
-        //}
-
-        //public Task<List<Prediction>> GetPredictionsForMultiStops(string agencyTag, params string[] routeTags)
-        //{
-        //    var request = _factory.CreatePredictionsForMultiStopsRequest(agencyTag, routeTags);
-        //    return ExecuteRequest(request).ContinueWith(x => _parser.ParseRoutePredictions(x.Result));
-        //}
-
-        //    private Task<string> ExecuteRequest(Request request)
-        //    {
-        //        var http = new HttpClientAccessor();
-        //        return http.Execute(request);
-        //    }
     }
+
+
+
+
+
+
+    //public Task<VehicleList> GetVehicles(string agency, string route, int epoch)
+    //{
+    //    var request = _factory.CreateVehiclesRequest(agency, route, epoch);
+    //    //Task<VehicleList> task = ExecuteRequest(request).ContinueWith(x => _parser.ParseVehicle(x.Result));
+    //    return task;
+    //}
+
+    //public Task<List<Prediction>> GetPredictions(string agencyTag, string stopTag, string routeTag)
+    //{
+    //    var request = _factory.CreatePredictionsRequest(agencyTag, stopTag, routeTag);
+    //    return ExecuteRequest(request).ContinueWith(x => _parser.ParseRoutePredictions(x.Result));
+    //}
+
+    //public Task<List<RouteSchedule>> GetSchedule(string agencyTag, string routeTag)
+    //{
+    //    var request = _factory.CreateScheduleRequest(agencyTag, routeTag);
+    //    return ExecuteRequest(request).ContinueWith(x => _parser.ParseSchedule(x.Result));
+    //}
+
+    //public Task<List<Prediction>> GetPredictionsForMultiStops(string agencyTag, params string[] routeTags)
+    //{
+    //    var request = _factory.CreatePredictionsForMultiStopsRequest(agencyTag, routeTags);
+    //    return ExecuteRequest(request).ContinueWith(x => _parser.ParseRoutePredictions(x.Result));
+    //}
+
+    //    private Task<string> ExecuteRequest(Request request)
+    //    {
+    //        var http = new HttpClientAccessor();
+    //        return http.Execute(request);
+    //    }
 }
