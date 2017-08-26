@@ -12,9 +12,9 @@ namespace NextBus.NET
         private readonly INextBusHttpClient _client;
 
         public NextBusClient()
+            : this(new NextBusHttpClient(), new NextBusDataParser())
         {
-            _client = new NextBusHttpClient();
-            _parser = new NextBusDataParser();
+            
         }
 
         public NextBusClient(INextBusHttpClient client, INextBusDataParser parser)
@@ -27,7 +27,7 @@ namespace NextBus.NET
         {
             var parameters = new Dictionary<string, object>
             {
-                { "command", "agencyList" }
+                {"command", "agencyList"}
             };
             var xml = await MakeRequest(parameters);
             var agencies = _parser.ParseAgencies(xml);
@@ -44,8 +44,8 @@ namespace NextBus.NET
         {
             var parameters = new Dictionary<string, object>
             {
-                { "command", "routeList" },
-                { "a", agencyTag },
+                {"command", "routeList"},
+                {"a", agencyTag},
             };
             if (verbose)
             {
@@ -60,9 +60,9 @@ namespace NextBus.NET
         {
             var parameters = new Dictionary<string, object>
             {
-                { "command", "routeConfig" },
-                { "a", agencyTag },
-                { "r", routeTag },
+                {"command", "routeConfig"},
+                {"a", agencyTag},
+                {"r", routeTag},
             };
             if (includePaths)
             {
@@ -79,9 +79,9 @@ namespace NextBus.NET
         {
             var parameters = new Dictionary<string, object>
             {
-                { "command", "predictions" },
-                { "a", agencyTag },
-                { "stopId", stopId },
+                {"command", "predictions"},
+                {"a", agencyTag},
+                {"stopId", stopId},
             };
             if (!string.IsNullOrWhiteSpace(routeTag))
             {
@@ -102,10 +102,10 @@ namespace NextBus.NET
         {
             var parameters = new Dictionary<string, object>
             {
-                { "command", "predictions" },
-                { "a", agencyTag },
-                { "s", stopTag },
-                { "r", routeTag },
+                {"command", "predictions"},
+                {"a", agencyTag},
+                {"s", stopTag},
+                {"r", routeTag},
             };
             if (verbose)
             {
@@ -147,9 +147,9 @@ namespace NextBus.NET
         {
             var parameters = new Dictionary<string, object>
             {
-                { "command", "schedule" },
-                { "a", agencyTag },
-                { "r", routeTag },
+                {"command", "schedule"},
+                {"a", agencyTag},
+                {"r", routeTag},
             };
 
             var xml = await MakeRequest(parameters);
